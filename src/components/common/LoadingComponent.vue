@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { useLoadingHandler } from "@/compositions/useLoadingHandler";
+import { useLoadingHandler } from "@/compositions/common/useLoadingHandler";
 
 const { isLoading } = useLoadingHandler();
 </script>

@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { FwbAlert } from "flowbite-vue";
-import { useAlertHandler } from "@/compositions/useAlertHandler";
+import { useAlertHandler } from "@/compositions/common/useAlertHandler";
 
 const { alertContent } = useAlertHandler();
 </script>

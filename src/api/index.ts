@@ -1,6 +1,12 @@
 import axios from "axios";
 
-const apiURL = import.meta.env.VITE_API_URL;
+import {
+  requestSuccessHandler,
+  requestErrorHandler,
+  responseSuccessHandler,
+  responseErrorHandler,
+  apiURL,
+} from "@/api/utilities";
 
 export const apiInstance = axios.create({
   baseURL: apiURL,
@@ -10,13 +16,11 @@ export const apiInstance = axios.create({
 });
 
 apiInstance.interceptors.request.use(
-  (config) => {
-    return config;
-  },
-  (error) => Promise.reject(error),
+  requestSuccessHandler,
+  requestErrorHandler,
 );
 
 apiInstance.interceptors.response.use(
-  (response) => response.data,
-  (error) => Promise.reject(error),
+  responseSuccessHandler,
+  responseErrorHandler,
 );

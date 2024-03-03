@@ -8,4 +8,5 @@ export interface EmailLoginRequest {
 export interface EmailLoginResponse extends ApiResponse {
   exp: number;
   token: string;
+  nickname: string;
 }

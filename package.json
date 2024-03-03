@@ -9,11 +9,13 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@types/js-cookie": "^3.0.6",
     "@vee-validate/i18n": "^4.12.5",
     "@vee-validate/rules": "^4.12.5",
     "axios": "^1.6.7",
     "flowbite": "^2.3.0",
     "flowbite-vue": "^0.1.2",
+    "js-cookie": "^3.0.5",
     "pinia": "^2.1.7",
     "url": "^0.11.3",
     "vee-validate": "^4.12.5",

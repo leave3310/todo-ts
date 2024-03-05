@@ -1,5 +1,3 @@
-import type { AxiosResponse } from "axios";
-
 import { apiInstance } from "@/api/index.ts";
 import type {
   EmailLoginRequest,
@@ -7,6 +5,5 @@ import type {
 } from "@/types/api/instances/member.ts";
 
 export const apiEmailLogin = (
-  data: EmailLoginRequest
-): Promise<AxiosResponse<EmailLoginResponse>> =>
-  apiInstance["post"](`users/sign_in`, data);
+  data: EmailLoginRequest,
+): Promise<EmailLoginResponse> => apiInstance["post"](`users/sign_in`, data);

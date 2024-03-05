@@ -3,7 +3,7 @@ import { FwbInput, FwbButton } from "flowbite-vue";
 import { useForm, useField } from "vee-validate";
 
 import { emailLogin } from "@/api/modules/member.ts";
-import { useLoadingHandler } from "@/compositions/useLoadingHandler";
+import { useLoadingHandler } from "@/compositions/common/useLoadingHandler";
 import type { EmailLoginForm } from "@/types/pages/LoginPage.ts";
 
 const { handleSubmit } = useForm<EmailLoginForm>({
@@ -47,7 +47,12 @@ const onSubmit = handleSubmit(async (values) => {
         </div>
       </div>
       <div class="mb-4">
-        <fwb-input v-model="password" placeholder="輸入密碼" label="密碼" />
+        <fwb-input
+          v-model="password"
+          type="password"
+          placeholder="輸入密碼"
+          label="密碼"
+        />
         <div class="mt-2 text-sm text-red-600 dark:text-red-500">
           {{ passwordErrorMessage }}
         </div>

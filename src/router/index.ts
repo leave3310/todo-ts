@@ -23,12 +23,18 @@ const router = createRouter({
           name: RouteName.INDEX,
           component: () => import("@/views/pages/IndexPage.vue"),
         },
+        {
+          path: "/:pathMatch(.*)*",
+          name: RoutePath.INDEX,
+          component: () => import("@/views/pages/IndexPage.vue"),
+        },
       ],
     },
     {
       path: LayoutPath.WITHOUT_HEADER,
       name: LayoutName.WITHOUT_HEADER,
       component: () => import("@/views/layouts/WithoutHeader/LayoutBlock.vue"),
+      meta: { isRequireGuest: true },
       children: [
         {
           path: RoutePath.LOGIN,
@@ -37,6 +43,11 @@ const router = createRouter({
         },
       ],
     },
+    {
+      path: "/:pathMatch(.*)*",
+      name: RoutePath.LOGIN,
+      component: () => import("@/views/pages/LoginPage.vue"),
+    },
   ],
   scrollBehavior() {
     return { top: 0 };
@@ -44,16 +55,26 @@ const router = createRouter({
 });
 
 router.beforeEach((to, from, next) => {
-  if (!to.meta.isRequireAuth) {
-    next();
-  }
-
   const { getToken } = useAuthHandler();
-  if (to.meta.isRequireAuth) {
-    if (getToken()) {
-      next();
-    } else {
-      next(RoutePath.LOGIN);
+  const token = getToken();
+  const { meta } = to;
+
+  if (!meta.isRequireGuest && !meta.isRequireAuth) {
+    next();
+  } else {
+    if (to.meta.isRequireGuest) {
+      if (token) {
+        next({ name: RouteName.INDEX });
+      } else {
+        next();
+      }
+    }
+    if (to.meta.isRequireAuth) {
+      if (token) {
+        next();
+      } else {
+        next({ name: RouteName.LOGIN });
+      }
     }
   }
 });

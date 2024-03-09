@@ -4,7 +4,14 @@ import type {
   AxiosResponse,
 } from "axios";
 
+import { useAuthHandler } from "@/compositions/auth/useAuthHandler";
+
 export const requestSuccessHandler = (config: InternalAxiosRequestConfig) => {
+  const { getToken } = useAuthHandler();
+  if (getToken()) {
+    config.headers.Authorization = getToken();
+  }
+
   return config;
 };
 

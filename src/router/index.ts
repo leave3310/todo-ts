@@ -34,7 +34,6 @@ const router = createRouter({
       path: LayoutPath.WITHOUT_HEADER,
       name: LayoutName.WITHOUT_HEADER,
       component: () => import("@/views/layouts/WithoutHeader/LayoutBlock.vue"),
-      meta: { isRequireGuest: true },
       children: [
         {
           path: RoutePath.LOGIN,
@@ -54,28 +53,16 @@ const router = createRouter({
   },
 });
 
-router.beforeEach((to, from, next) => {
+router.beforeEach((to) => {
   const { getToken } = useAuthHandler();
   const token = getToken();
-  const { meta } = to;
+  const { meta, name } = to;
 
-  if (!meta.isRequireGuest && !meta.isRequireAuth) {
-    next();
-  } else {
-    if (to.meta.isRequireGuest) {
-      if (token) {
-        next({ name: RouteName.INDEX });
-      } else {
-        next();
-      }
-    }
-    if (to.meta.isRequireAuth) {
-      if (token) {
-        next();
-      } else {
-        next({ name: RouteName.LOGIN });
-      }
-    }
+  if (meta.isRequireAuth && !token) {
+    return { name: RouteName.LOGIN };
+  }
+  if (name === RouteName.LOGIN && token) {
+    return { name: RouteName.INDEX };
   }
 });
 

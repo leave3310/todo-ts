@@ -1,5 +1,7 @@
 <script setup lang="ts">
 import { FwbNavbar, FwbNavbarCollapse, FwbNavbarLink } from "flowbite-vue";
+
+import { logOut } from "@/api/modules/member";
 </script>
 
 <template>
@@ -10,7 +12,9 @@ import { FwbNavbar, FwbNavbarCollapse, FwbNavbarLink } from "flowbite-vue";
       </template>
       <template #default="{ isShowMenu }">
         <fwb-navbar-collapse :is-show-menu="isShowMenu">
-          <fwb-navbar-link is-active link="#"> Logout </fwb-navbar-link>
+          <fwb-navbar-link is-active link="#" @click="logOut">
+            Logout
+          </fwb-navbar-link>
         </fwb-navbar-collapse>
       </template>
     </fwb-navbar>

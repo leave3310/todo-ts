@@ -20,3 +20,7 @@ export interface SignUpRequest {
 export interface SignUpResponse extends ApiResponse {
   uid: string;
 }
+
+export interface SignOutResponse extends ApiResponse {
+  message: string;
+}

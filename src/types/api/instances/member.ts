@@ -10,3 +10,13 @@ export interface EmailLoginResponse extends ApiResponse {
   token: string;
   nickname: string;
 }
+
+export interface SignUpRequest {
+  email: string;
+  password: string;
+  nickname: string;
+}
+
+export interface SignUpResponse extends ApiResponse {
+  uid: string;
+}

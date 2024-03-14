@@ -10,9 +10,11 @@ export enum LayoutName {
 export enum RoutePath {
   INDEX = "",
   LOGIN = "login",
+  REGISTER= "register"
 }
 
 export enum RouteName {
   INDEX = "Index",
   LOGIN = "Login",
+  REGISTER = "Register"
 }

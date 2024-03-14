@@ -1,18 +1,21 @@
 import { useRoute } from "vue-router";
 
 import Router from "@/router/index.js";
+import { useAlertHandler } from "@/compositions/common/useAlertHandler";
 import type { routerObjStruct } from "@/types/router/index";
 
 export const useRouterHandler = () => {
+  const { updateAlertContent } = useAlertHandler();
+
   const vueRouterPush = (routerObj: routerObjStruct) => {
-    if (!Object.keys(routerObj).includes("name")) {
-      return;
-    }
-    Router.push(routerObj);
+    Router.push({ name: routerObj.name });
   };
 
   const delayVueRouterPush = (routerObj: routerObjStruct) => {
     setTimeout(() => {
+      updateAlertContent({
+        isShowAlert: false,
+      });
       vueRouterPush(routerObj);
     }, 3000);
   };

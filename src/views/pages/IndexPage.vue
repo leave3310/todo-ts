@@ -119,16 +119,16 @@ onMounted(async () => {
         >
           <div class="flex items-center">
             <div class="mr-5">
-              <input type="checkbox" @change="toggleStatus(item.id)" />
+              <input type="checkbox" :id="item.id" :value="item.status" @change="toggleStatus(item.id)" />
             </div>
-            <div>
+            <label :for="item.id">
               <div class="text-lg font-bold">
                 {{ item.content }}
               </div>
               <div>
                 {{ timeStampTransform(item.createTime) }}
               </div>
-            </div>
+            </label>
           </div>
           <div class="flex">
             <PencilSquareIcon

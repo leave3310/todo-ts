@@ -6,7 +6,7 @@ import EffectWrap from "@/views/layouts/EffectWrap.vue";
 <template>
   <div class="flex h-dvh flex-col">
     <HeaderBlock />
-    <main class="flex max-w-container flex-1 flex-col">
+    <main class="mx-auto flex w-full max-w-container flex-1 flex-col">
       <router-view />
     </main>
     <EffectWrap />
